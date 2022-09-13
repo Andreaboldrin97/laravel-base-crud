@@ -14,6 +14,7 @@ class ComicTableSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
+        Comic::truncate();
         $type = [
             'horror',
             'comedy',
@@ -23,10 +24,10 @@ class ComicTableSeeder extends Seeder
 
         for ($i = 1; $i <= 20; $i++) {
             $newComic = new Comic();
-            $newComic->title = $faker->sentence();
+            $newComic->title = $faker->realText(35);
             $newComic->description = $faker->paragraph(3, true);
             $newComic->image_url = $faker->imageUrl(350, 350, 'comic');
-            $newComic->price = $faker->randomFloat(2);
+            $newComic->price = $faker->randomFloat(2, 20, 100);
             $newComic->series = $faker->word();
             $newComic->sale_date = $faker->date();
             $newComic->type = $faker->randomElement($type);
