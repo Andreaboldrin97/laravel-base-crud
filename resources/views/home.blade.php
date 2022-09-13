@@ -18,7 +18,10 @@
                 @forelse ($comics as $comic)
                     <tr>
                         <td>{{ $comic->id }}</td>
-                        <td>{{ $comic->title }}</td>
+                        <td>
+                            <a href="{{ route('ComicCard', $comic->slug) }}">
+                                {{ $comic->title }}</a>
+                        </td>
                         <td>{{ $comic->description }}</td>
                         <td>{{ $comic->price }}</td>
                         <td>{{ $comic->series }}</td>
