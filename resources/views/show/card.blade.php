@@ -13,7 +13,7 @@
         <div class="card-body">
             <h5 class="card-title">{{ $comic->title }}</h5>
             <p class="card-text">{{ $comic->description }}</p>
-            <p>PRICE : {{ $comic->price }}</p>
+            <p>PRICE : {{ $comic->price }} $</p>
             <P>TYPE : {{ $comic->type }}</P>
             <P>SERIES : {{ $comic->series }}</P>
         </div>
