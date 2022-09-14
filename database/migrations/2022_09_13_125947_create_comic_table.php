@@ -22,7 +22,7 @@ class CreateComicTable extends Migration
             $table->string('series');
             $table->date('sale_date');
             $table->string('type');
-            $table->string('slug')->unique();
+            $table->string('slug')->unique()->nullable();
             $table->timestamps();
         });
     }
