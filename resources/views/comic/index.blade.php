@@ -28,7 +28,7 @@
                         <td>{{ $comic->series }}</td>
                         <td>{{ $comic->type }}</td>
                         <td>
-                            <a class="btn btn-success">
+                            <a class="btn btn-success" href="{{ route('comics.edit', $comic->slug) }}">
                                 edit
                             </a>
                         </td>
