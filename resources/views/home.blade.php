@@ -3,6 +3,7 @@
 @section('name', 'home')
 
 @section('main-content')
-    main
-
+    <h1>
+        identification degree project
+    </h1>
 @endsection
