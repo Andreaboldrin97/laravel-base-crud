@@ -5,18 +5,26 @@
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('comics.index') }}">Comic</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link btn btn-dark text-white" href="{{ route('comics.create') }}">Add new Comic</a>
-                </li>
-            </ul>
+        <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+            <div>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('comics.index') }}">Comic</a>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-success text-white" href="{{ route('comics.create') }}">Add new
+                            Comic</a>
+                    </li>
+                </ul>
+            </div>
+
         </div>
     </div>
 </nav>
