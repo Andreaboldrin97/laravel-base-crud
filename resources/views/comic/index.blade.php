@@ -5,6 +5,11 @@
 @section('main-content')
     ELEMENT IN DB-COMIC
     <div class="mt-3">
+        @if (session('delete'))
+            <div class="alert alert-danger">
+                {{ session('delete') }} : questo elemento è stato cancellato corettamente
+            </div>
+        @endif
         <table class="table table-dark table-striped">
             <thead>
                 <th>ID</th>

@@ -111,6 +111,6 @@ class ComicController extends Controller
         $comic = Comic::where('slug', $slug)->first();
         $comic->delete();
 
-        return redirect()->route('comics.index');
+        return redirect()->route('comics.index')->with('delete', $comic->title);
     }
 }

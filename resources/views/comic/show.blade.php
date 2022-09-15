@@ -8,7 +8,7 @@
     <div class="card text-center col-8 offset-2 ">
         @if (session('create'))
             <div class="alert alert-success">
-                {{ session('create') }} questo elemento è stato creato corettamente
+                {{ session('create') }} : questo elemento è stato creato corettamente
             </div>
         @endif
 
