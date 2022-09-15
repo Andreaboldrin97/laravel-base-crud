@@ -39,7 +39,7 @@
                             </a>
                         </td>
                         <td>
-                            <form action="{{ route('comics.destroy', $comic->slug) }}" method="POST">
+                            <form action="{{ route('comics.destroy', $comic->slug) }}" class="delete-method" method="POST">
                                 @csrf
                                 @method('DELETE')
 
@@ -61,5 +61,14 @@
 
 {{-- SCRIP SECTION --}}
 @section('script-main')
-
+    <script>
+        const deleteElement = document.querySelectorAll(".delete-method");
+        deleteElement.forEach(elementForm => {
+            elementForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                const result = window.confirm(`vuoi eliminare l'elemento ?`);
+                if (result) this.submit();
+            })
+        });
+    </script>
 @endsection
