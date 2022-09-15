@@ -5,7 +5,7 @@
 
 @section('main-content')
     @if (isset($comic))
-        <form class="col-8  offset-2 bg-dark p-4 rounded" method="POST" action="{{ route('comics.update', $comic->slug) }}">
+        <form class="col-8  offset-2 bg-dark p-4 rounded" method="POST" action="{{ route('comics.update', $comic->id) }}">
             @method('PATCH')
         @else
             <form class="col-8  offset-2 bg-dark p-4 rounded" method="POST" action="{{ route('comics.store') }}">

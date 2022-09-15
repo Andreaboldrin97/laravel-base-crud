@@ -14,6 +14,7 @@
                 <th>SERIE</th>
                 <th>TYPE</th>
                 <th></th>
+                <th></th>
             </thead>
             <tbody>
                 @forelse ($comics as $comic)
@@ -29,13 +30,23 @@
                         <td>{{ $comic->type }}</td>
                         <td>
                             <a class="btn btn-success" href="{{ route('comics.edit', $comic->slug) }}">
-                                edit
+                                Edit
                             </a>
+                        </td>
+                        <td>
+                            <form action="{{ route('comics.destroy', $comic->slug) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+
+                                <button class="btn btn-danger" type="submit">
+                                    Delete
+                                </button>
+                            </form>
                         </td>
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="6">Non ci sono fumetti da visualizzare</td>
+                        <td colspan="8">Non ci sono fumetti da visualizzare</td>
                     </tr>
                 @endforelse
             </tbody>

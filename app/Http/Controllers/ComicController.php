@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Comic;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Str;
 
 class ComicController extends Controller
@@ -90,7 +91,13 @@ class ComicController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $comic = Comic::findOrFail($id);
+        $data = $request->all();
+        $comic->update($data);
+        $comic->slug = Str::slug($comic->title . $comic->id, '-');
+        $comic->save();
+
+        return redirect()->route('comics.show', $comic->slug);
     }
 
     /**
@@ -99,8 +106,11 @@ class ComicController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($slug)
     {
-        //
+        $comic = Comic::where('slug', $slug)->first();
+        $comic->delete();
+
+        return redirect()->route('comics.index');
     }
 }
