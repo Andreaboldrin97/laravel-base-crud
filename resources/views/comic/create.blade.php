@@ -20,7 +20,7 @@
     <div class="mb-3">
         <label for="description" class="form-label text-white">DESCRIPTION</label>
         <textarea class="form-control" name="description" id="description" rows="3">
-            {{ $comic->description ?? '' }}"
+            {{ $comic->description ?? '' }}
         </textarea>
     </div>
     <div class="mb-3">
@@ -42,11 +42,10 @@
     <div class="mb-3">
         <label for="type" class="form-label text-white">TYPE</label>
         <select name="type" id="type">
-            <option value="">{{ $comic->type ?? '' }}</option>
-            <option value="adventure">adventure</option>
-            <option value="horror">horror</option>
-            <option value="thriller">thriller</option>
-            <option value="comedy">comedy</option>
+            @foreach ($types as $type)
+                <option value="{{ $type->type_name }}" {{ $type->type_name == $comic->type ? 'selected' : '' }}>
+                    {{ ucwords($type->type_name) }}</option>
+            @endforeach
         </select>
     </div>
     <button type="submit" class="btn btn-success">Submit</button>

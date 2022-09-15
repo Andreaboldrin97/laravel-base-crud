@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Comic;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class ComicController extends Controller
@@ -26,7 +27,8 @@ class ComicController extends Controller
      */
     public function create()
     {
-        return view('comic.create');
+        $types = DB::table('comics')->select('type as type_name')->distinct()->get();
+        return view('comic.create', compact('types'));
     }
 
     /**
@@ -75,7 +77,8 @@ class ComicController extends Controller
     public function edit($slug)
     {
         $comic = Comic::where('slug', $slug)->first();
-        return view('comic.create', compact('comic'));
+        $types = DB::table('comics')->select('type as type_name')->distinct()->get();
+        return view('comic.create', compact(['comic', 'types']));
     }
 
     /**
