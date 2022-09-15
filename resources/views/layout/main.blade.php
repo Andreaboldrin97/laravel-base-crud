@@ -21,6 +21,10 @@
     <footer>
         @include('includes.footer')
     </footer>
+
+    <script>
+        @yield('script-main')
+    </script>
 </body>
 
 </html>

@@ -53,3 +53,8 @@
         </table>
     </div>
 @endsection
+
+{{-- SCRIP SECTION --}}
+@section('script-main')
+
+@endsection

@@ -43,8 +43,13 @@
         <label for="type" class="form-label text-white">TYPE</label>
         <select name="type" id="type">
             @foreach ($types as $type)
-                <option value="{{ $type->type_name }}" {{ $type->type_name == $comic->type ? 'selected' : '' }}>
-                    {{ ucwords($type->type_name) }}</option>
+                @if (isset($comic))
+                    <option value="{{ $type->type_name }}" {{ $type->type_name == $comic->type ? 'selected' : '' }}>
+                        {{ ucwords($type->type_name) }}</option>
+                @else
+                    <option value="{{ $type->type_name }}">
+                        {{ ucwords($type->type_name) }}</option>
+                @endif
             @endforeach
         </select>
     </div>

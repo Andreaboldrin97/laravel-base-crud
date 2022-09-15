@@ -1,9 +1,17 @@
 @extends('layout.main')
 
-@section('name', 'comic')
+@section('name', $comic->slug)
+
+
 
 @section('main-content')
     <div class="card text-center col-8 offset-2 ">
+        @if (session('create'))
+            <div class="alert alert-success">
+                {{ session('create') }} questo elemento è stato creato corettamente
+            </div>
+        @endif
+
         <div class="card-header">
             COMIC N: {{ $comic->id }}
         </div>
