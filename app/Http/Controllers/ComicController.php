@@ -97,7 +97,7 @@ class ComicController extends Controller
         $comic->slug = Str::slug($comic->title . $comic->id, '-');
         $comic->save();
 
-        return redirect()->route('comics.show', $comic->slug);
+        return redirect()->route('comics.show', $comic->slug)->with('create', $comic->title);
     }
 
     /**
