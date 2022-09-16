@@ -15,8 +15,8 @@ class ComicController extends Controller
     protected $validationRecord = [
         'title' => 'required|min:3|alpha_num',
         'description' => 'required|min:5',
-        'imge_url' => 'required|active_url',
-        'price' => 'required|numeric|integer',
+        'image_url' => 'required',
+        'price' => 'required|numeric',
         'series' => 'required|min:3|alpha_num',
         'sale_date' => 'required|after:1897-05-06',
         'type' => 'required',
@@ -42,8 +42,11 @@ class ComicController extends Controller
      */
     public function create()
     {
+        $comic = new Comic();
+        $route = route('comics.store');
+        $method = 'POST';
         $types = DB::table('comics')->select('type as type_name')->distinct()->get();
-        return view('comic.create', compact('types'));
+        return view('comic.create', compact(['types', 'comic', 'route', 'method']));
     }
 
     /**
@@ -87,9 +90,12 @@ class ComicController extends Controller
      */
     public function edit($slug)
     {
-        $comic = Comic::where('slug', $slug)->first();
+
+        $method = 'PATCH';
+        $comic = Comic::where('slug', $slug)->firstOrFail();
+        $route = route('comics.update', $comic->id);
         $types = DB::table('comics')->select('type as type_name')->distinct()->get();
-        return view('comic.create', compact(['comic', 'types']));
+        return view('comic.create', compact(['comic', 'types', 'route', 'method']));
     }
 
     /**
@@ -102,6 +108,7 @@ class ComicController extends Controller
     public function update(Request $request, $id)
     {
         $validatedData = $request->validate($this->validationRecord);
+
 
         $comic = Comic::findOrFail($id);
         $data = $request->all();
