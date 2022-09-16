@@ -46,7 +46,7 @@ class ComicController extends Controller
         $route = route('comics.store');
         $method = 'POST';
         $types = DB::table('comics')->select('type as type_name')->distinct()->get();
-        return view('comic.create', compact(['types', 'comic', 'route', 'method']));
+        return view('comic.create&edit', compact(['types', 'comic', 'route', 'method']));
     }
 
     /**
@@ -95,7 +95,7 @@ class ComicController extends Controller
         $comic = Comic::where('slug', $slug)->firstOrFail();
         $route = route('comics.update', $comic->id);
         $types = DB::table('comics')->select('type as type_name')->distinct()->get();
-        return view('comic.create', compact(['comic', 'types', 'route', 'method']));
+        return view('comic.create&edit', compact(['comic', 'types', 'route', 'method']));
     }
 
     /**
