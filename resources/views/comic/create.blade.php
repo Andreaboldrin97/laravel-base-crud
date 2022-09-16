@@ -41,6 +41,11 @@
         </div>
         <div class="mb-3">
             <label for="price" class="form-label text-white">PRICE</label>
+            @error('price')
+                <p class="text-danger fs-6">
+                    {{ $message }}
+                </p>
+            @enderror
             <input type="text" name="price" class="form-control" id="price" required
                 value="{{ old('price', $comic->price) }}">
         </div>
