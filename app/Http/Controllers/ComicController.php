@@ -10,6 +10,20 @@ use Illuminate\Support\Str;
 
 class ComicController extends Controller
 {
+
+    // VALIDATION REQUIREMENTS
+    protected $validationRecord = [
+        'title' => 'required|min:3|alpha_num',
+        'description' => 'required|min:5|alpha',
+        'imge_url' => 'required|active_url',
+        'price' => 'required|numeric|integer',
+        'series' => 'required|min:3|alpha_num',
+        'sale_date' => 'required|after:1897-05-06',
+        'type' => 'required',
+    ];
+
+
+
     /**
      * Display a listing of the resource.
      *
@@ -40,17 +54,13 @@ class ComicController extends Controller
      */
     public function store(Request $request)
     {
+        $validatedData = $request->validate($this->validationRecord);
+
         $data = $request->all();
 
+
         $newComic = new Comic();
-        $newComic->title = $data['title'];
-        $newComic->description = $data['description'];
-        $newComic->image_url = $data['image_url'];
-        $newComic->price = $data['price'];
-        $newComic->series = $data['series'];
-        $newComic->sale_date = $data['sale_date'];
-        $newComic->type = $data['type'];
-        $newComic->save();
+        $newComic->create($data);
         $newComic->slug = Str::slug($newComic->title . $newComic->id, '-');
         $newComic->save();
 
@@ -91,6 +101,8 @@ class ComicController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $validatedData = $request->validate($this->validationRecord);
+
         $comic = Comic::findOrFail($id);
         $data = $request->all();
         $comic->update($data);
