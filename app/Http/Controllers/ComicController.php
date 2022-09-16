@@ -14,7 +14,7 @@ class ComicController extends Controller
     // VALIDATION REQUIREMENTS
     protected $validationRecord = [
         'title' => 'required|min:3|alpha_num',
-        'description' => 'required|min:5|alpha',
+        'description' => 'required|min:5',
         'imge_url' => 'required|active_url',
         'price' => 'required|numeric|integer',
         'series' => 'required|min:3|alpha_num',
